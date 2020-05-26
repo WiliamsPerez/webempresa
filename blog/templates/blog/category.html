@@ -5,7 +5,7 @@
 {% block title %}Blog{% endblock %}
 
 {% block content %}
-    {% for post in posts %}
+    {% for post in category.get_posts.all%}
     <section class="page-section cta">
         <div class="container">
             <div class="row">
@@ -18,17 +18,16 @@
                             {{post.title}}</span>
                     </h2>
                     <p class="mb-0">
-                        <img class="mx-auto d-flex img-fluid mb-3 mb-lg-0" 
-                            src="{{post.imagen.url}}" alt="">
+                        <img class="mx-auto d-flex img-fluid mb-3 mb-lg-0" src="{{post.imagen.url}}" alt="">
                     </p>
                     <p class="mb-0 mbt">{{post.content|linebreaks}}</p>
                     <p class="mb-0 mbt">
                     <span class="section-heading-under">Publicado por 
                     <em>
-                        <b>{{post.author}}</b></em> en
-                            {% for category in post.categories.all %}
-                            <a href="{% url 'category' category.id %}" class="link">{{category.name}}</a>
-                        {% endfor %}
+                    <b>{{post.author}}</b></em> en
+                    {% for category in post.categories.all %}
+                    <a href="{% url 'category' category.id %}" class="link">{{category.name}}</a>
+                    {% endfor %}
                     </span>
                     </p>                                    
               
